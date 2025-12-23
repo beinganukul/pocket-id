@@ -312,6 +312,7 @@
 	"favicon": "Favicon",
 	"light_mode_logo": "Light Mode Logo",
 	"dark_mode_logo": "Dark Mode Logo",
+	"email_logo": "Email Logo",
 	"background_image": "Background Image",
 	"language": "Language",
 	"reset_profile_picture_question": "Reset profile picture?",
@@ -470,5 +471,6 @@
 	"default_profile_picture": "Default Profile Picture",
 	"light": "Light",
 	"dark": "Dark",
-	"system": "System"
+	"system": "System",
+	"signup_token_user_groups_description": "Automatically assign these groups to users who sign up using this token."
 }
