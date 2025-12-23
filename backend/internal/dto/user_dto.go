@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/gin-gonic/gin/binding"
+	datatype "github.com/pocket-id/pocket-id/backend/internal/model/types"
 	"github.com/pocket-id/pocket-id/backend/internal/utils"
 )
 
@@ -11,6 +12,7 @@ type UserDto struct {
 	ID           string           `json:"id"`
 	Username     string           `json:"username"`
 	Email        *string          `json:"email" `
+	BirthDate    *datatype.DateTime       `json:"birthDate"`
 	FirstName    string           `json:"firstName"`
 	LastName     *string          `json:"lastName"`
 	DisplayName  string           `json:"displayName"`
@@ -23,15 +25,16 @@ type UserDto struct {
 }
 
 type UserCreateDto struct {
-	Username    string  `json:"username" binding:"required,username,min=2,max=50" unorm:"nfc"`
-	Email       *string `json:"email" binding:"omitempty,email" unorm:"nfc"`
-	FirstName   string  `json:"firstName" binding:"required,min=1,max=50" unorm:"nfc"`
-	LastName    string  `json:"lastName" binding:"max=50" unorm:"nfc"`
-	DisplayName string  `json:"displayName" binding:"required,min=1,max=100" unorm:"nfc"`
-	IsAdmin     bool    `json:"isAdmin"`
-	Locale      *string `json:"locale"`
-	Disabled    bool    `json:"disabled"`
-	LdapID      string  `json:"-"`
+	Username    string     `json:"username" binding:"required,username,min=2,max=50" unorm:"nfc"`
+	Email       *string    `json:"email" binding:"omitempty,email" unorm:"nfc"`
+	FirstName   string     `json:"firstName" binding:"required,min=1,max=50" unorm:"nfc"`
+	LastName    string     `json:"lastName" binding:"max=50" unorm:"nfc"`
+	BirthDate   *datatype.DateTime `json:"birthDate" binding:"omitempty" unorm:"nfc"`
+	DisplayName string     `json:"displayName" binding:"required,min=1,max=100" unorm:"nfc"`
+	IsAdmin     bool       `json:"isAdmin"`
+	Locale      *string    `json:"locale"`
+	Disabled    bool       `json:"disabled"`
+	LdapID      string     `json:"-"`
 }
 
 func (u UserCreateDto) Validate() error {
@@ -69,4 +72,5 @@ type SignUpDto struct {
 	FirstName string  `json:"firstName" binding:"required,min=1,max=50" unorm:"nfc"`
 	LastName  string  `json:"lastName" binding:"max=50" unorm:"nfc"`
 	Token     string  `json:"token"`
+	BirthDate *datatype.DateTime `json:"birthDate"`
 }

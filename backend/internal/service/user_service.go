@@ -259,6 +259,7 @@ func (s *UserService) createUserInternal(ctx context.Context, input dto.UserCrea
 		DisplayName: input.DisplayName,
 		Email:       input.Email,
 		Username:    input.Username,
+		BirthDate:   input.BirthDate,
 		IsAdmin:     input.IsAdmin,
 		Locale:      input.Locale,
 		Disabled:    input.Disabled,
@@ -396,6 +397,7 @@ func (s *UserService) updateUserInternal(ctx context.Context, userID string, upd
 		user.Email = updatedUser.Email
 		user.Username = updatedUser.Username
 		user.Locale = updatedUser.Locale
+		user.BirthDate = updatedUser.BirthDate
 
 		// Admin-only fields: Only allow updates when not updating own account
 		if !updateOwnUser {
@@ -653,6 +655,7 @@ func (s *UserService) SignUpInitialAdmin(ctx context.Context, signUpData dto.Sig
 		Username:    signUpData.Username,
 		Email:       signUpData.Email,
 		IsAdmin:     true,
+		BirthDate:   signUpData.BirthDate,
 	}
 
 	user, err := s.createUserInternal(ctx, userToCreate, false, tx)
